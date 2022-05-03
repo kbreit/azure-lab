@@ -4,6 +4,6 @@ variable "azure_rg_name" {
 }
 
 variable "azure_rg_region" {
-  type = "string
+  type = "string"
   default="centralus"
 }
