@@ -14,3 +14,8 @@ variable "azure_vnet_address_spaces" {
     "10.2.0.0/16"
   ]
 }
+
+variable "azure_vnet_name" {
+  type = string
+  default = "kbreit-default"
+}

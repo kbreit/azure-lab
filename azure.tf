@@ -16,6 +16,7 @@ module "network" {
   source = "Azure/network/azurerm"
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
   address_spaces = var.azure_vnet_address_spaces
+  vnet_name = var.azure_vnet_name
 
   tags = {
     owner = "Kevin Breit"
