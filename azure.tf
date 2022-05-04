@@ -96,4 +96,6 @@ resource "azurerm_virtual_network_gateway_connection" "ep_vpn_connection" {
   type = "IPsec"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.vpn_gateway.id
   local_network_gateway_id = azurerm_local_network_gateway.ep_gateway.id
+
+  shared_key = var.vpn_key
 }
