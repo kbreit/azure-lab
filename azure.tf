@@ -77,3 +77,23 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway" {
     subnet_id = module.vnet_default.vnet_subnets[1]
   }
 }
+
+resource "azurerm_local_network_gateway" "ep_gateway" {
+  name = "ep-gateway"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location = azurerm_resource_group.azurerm_resource_group.location
+  gateway_address = "34.138.95.11"
+  address_space = [
+    "10.207.0.0/24"
+  ]
+}
+
+resource "azurerm_virtual_network_gateway_connection" "ep_vpn_connection" {
+  name = "ep-connection"
+  location = azurerm_resource_group.azurerm_resource_group.location
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+
+  type = "IPsec"
+  virtual_network_gateway_id = module.vnet_default.id
+  local_network_gateway_id = azurerm_local_network_gateway.ep_gateway.id
+}
