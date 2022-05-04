@@ -29,7 +29,7 @@ variable "azure_lz_subnet_names" {
   ]
 }
 
-variable "azure_vnet_lz_name" {
+variable "azure_vnet_lz_names" {
   type = string
   default = "kbreit-default"
 }
@@ -53,7 +53,7 @@ variable "azure_app_subnet_names" {
   default = ["web"]
 }
 
-variable "azure_vnet_app_name" {
+variable "azure_vnet_app_names" {
   type = string
   default = "kbreit-app"
 }
