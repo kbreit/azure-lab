@@ -48,7 +48,7 @@ variable "azure_vnet_app_subnets" {
   ]
 }
 
-varialbe "azure_app_subnet_names" {
+variable "azure_app_subnet_names" {
   type = list(string)
   default = ["web"]
 }
