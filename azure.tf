@@ -16,9 +16,9 @@ module "vnet_default" {
   source = "Azure/network/azurerm"
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
   address_spaces = var.azure_vnet_lz_address_spaces
-  vnet_name = var.azure_vnet_lz_name
+  vnet_name = var.azure_vnet_lz_names
   subnet_prefixes = var.azure_vnet_lz_subnets
-  subnet_names = var.azure_subnet_lz_names
+  subnet_names = var.azure_lz_subnet_names
 
   tags = {
     owner = "Kevin Breit"
@@ -29,7 +29,7 @@ module "vnet_app" {
   source = "Azure/network/azurerm"
   resource_group_name =  azurerm_resource_group.azurerm_resource_group.name
   address_spaces = var.azure_vnet_app_address_spaces
-  vnet_name = var.azure_vnet_app_name
+  vnet_name = var.azure_vnet_app_names
   subnet_prefixes = var.azure_vnet_app_subnets
   subnet_names = var.azure_app_subnet_names
 }
