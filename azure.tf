@@ -94,6 +94,6 @@ resource "azurerm_virtual_network_gateway_connection" "ep_vpn_connection" {
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
 
   type = "IPsec"
-  virtual_network_gateway_id = module.vnet_default.vnet_id
+  virtual_network_gateway_id = azurerm_virtual_network_gateway.vpn_gateway.id
   local_network_gateway_id = azurerm_local_network_gateway.ep_gateway.id
 }
