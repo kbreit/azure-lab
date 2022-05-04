@@ -72,7 +72,7 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway" {
 
   ip_configuration {
     name = "vpnGatewayConfig"
-    public_ip_address_id = azure_public_ip.vpn_gateway_ip.id
+    public_ip_address_id = azurerm_public_ip.vpn_gateway_ip.id
     private_ip_address_allocation = "Dynamic"
     subnet_id = module.vnet_default.subnets[0]
   }
