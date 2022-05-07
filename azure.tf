@@ -117,14 +117,11 @@ resource "azurerm_linux_virtual_machine" "default_vnet_vm" {
   location            = azurerm_resource_group.azurerm_resource_group.location
   size                = var.vm_size
   admin_username      = var.vm_username
+  admin_password = var.vm_password
 
   network_interface_ids = [
     azurerm_network_interface.default_vnet_vm_intf.id,
   ]
-  admin_ssh_key {
-    username   = var.vm_username
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
 
   os_disk {
     caching              = "ReadWrite"
