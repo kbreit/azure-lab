@@ -60,6 +60,28 @@ variable "azure_vnet_app_names" {
   default = "kbreit-app"
 }
 
+variable "azure_vnet_common_address_spaces" {
+  type = list(string)
+  default = [
+    "10.4.0.0/16"
+  ]
+}
+
+variable "azure_vnet_common_subnets" {
+  type = list(string)
+  default = "common"
+}
+
+variable "azure_vnet_common_names" {
+  type = string
+  default = "kbreit-common"
+}
+
+variable "azure_vnet_common_names" {
+  type = string
+  default = "kbreit-common"
+}
+
 variable "VPN_SECRET" {
   type = string
 }

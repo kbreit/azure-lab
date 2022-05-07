@@ -9,7 +9,6 @@ resource "azurerm_resource_group" "azurerm_resource_group" {
   tags = {
     owner = "Kevin Breit"
   }
-
 }
 
 module "vnet_default" {
@@ -34,6 +33,16 @@ module "vnet_app" {
   vnet_name = var.azure_vnet_app_names
   subnet_prefixes = var.azure_vnet_app_subnets
   subnet_names = var.azure_app_subnet_names
+}
+
+module "vnet_common" {
+  source = "Azure/network/azurerm"
+  version = "3.5.0"
+  resource_group_name =  azurerm_resource_group.azurerm_resource_group.name
+  address_spaces = var.azure_vnet_common_address_spaces
+  vnet_name = var.azure_vnet_common_names
+  subnet_prefixes = var.azure_vnet_common_subnets
+  subnet_names = var.azure_common_subnet_names
 }
 
 resource "azurerm_virtual_network_peering" "default_to_app" {
@@ -174,21 +183,3 @@ resource "azurerm_linux_virtual_machine" "app_vnet_vm" {
   }
 }
 
-resource "azurerm_public_ip" "bastion_app_pup" {
-  name = "app-bastion-ip"
-  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
-  location            = azurerm_resource_group.azurerm_resource_group.location
-  allocation_method = "Static"
-  sku = "Standard"
-}
-
-resource "azurerm_bastion_host" "app" {
-  name = "app-bastion"
-  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
-  location            = azurerm_resource_group.azurerm_resource_group.location
-  ip_configuration {
-    name = "configuration"
-    subnet_id = module.vnet_app.vnet_subnets[0]
-    public_ip_address_id = azurerm_public_ip.bastion_app_pup.id
-  }
-}
