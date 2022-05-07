@@ -118,7 +118,7 @@ resource "azurerm_linux_virtual_machine" "default_vnet_vm" {
   admin_username      = var.vm_username
 
   network_interface_ids = [
-    azurerm_network_interface.example.id,
+    azurerm_network_interface.default_vnet_vm_intf.id,
   ]
   admin_ssh_key {
     username   = var.vm_username
