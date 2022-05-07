@@ -106,7 +106,7 @@ resource "azurerm_network_interface" "default_vnet_vm_intf" {
   location            = azurerm_resource_group.azurerm_resource_group.location
   ip_configuration {
     name = "internal"
-    subnet_id = module.vnet_default.vnet_subnets[0].id
+    subnet_id = module.vnet_default.vnet_subnets[0]
     private_ip_address_allocation = "Dynamic"
   }
 }
