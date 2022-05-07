@@ -60,6 +60,12 @@ variable "azure_vnet_app_names" {
   default = "kbreit-app"
 }
 
+variable "azure_common_subnet_names" {
+  type = list(string)
+  default = [
+    "common"
+  ]
+
 variable "azure_vnet_common_address_spaces" {
   type = list(string)
   default = [
