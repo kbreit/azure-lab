@@ -63,3 +63,18 @@ variable "azure_vnet_app_names" {
 variable "VPN_SECRET" {
   type = string
 }
+
+variable "vm_username" {
+  type = string
+  default = "kbreit"
+}
+
+variable "vm_distribution" {
+  type = string
+  default = "22.04-LTS"
+}
+
+variable "vm_size" {
+  type = string
+  default = "Standard_B1ls"
+}

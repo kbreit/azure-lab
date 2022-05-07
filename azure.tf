@@ -99,3 +99,41 @@ resource "azurerm_virtual_network_gateway_connection" "ep_vpn_connection" {
 
   shared_key = var.VPN_SECRET
 }
+
+resource "azurerm_network_interface" "default_vnet_vm_intf" {
+  name = "default-vm-intf"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
+  ip_configuration {
+    name = "internal"
+    subnet_id = module.vnet_default.subnet.0.id
+  }
+}
+
+resource "azurerm_linux_virtual_machine" "default_vnet_vm" {
+  name = "default-vnet-vm"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
+  size                = var.vm_size
+  admin_username      = var.vm_username
+
+  network_interface_ids = [
+    azurerm_network_interface.example.id,
+  ]
+  admin_ssh_key {
+    username   = var.vm_username
+    public_key = file("~/.ssh/id_rsa.pub")
+  }
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = var.vm_distribution
+    version   = "latest"
+  }
+}
