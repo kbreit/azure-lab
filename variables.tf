@@ -77,11 +77,6 @@ variable "azure_vnet_common_names" {
   default = "kbreit-common"
 }
 
-variable "azure_vnet_common_names" {
-  type = string
-  default = "kbreit-common"
-}
-
 variable "VPN_SECRET" {
   type = string
 }
