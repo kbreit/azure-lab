@@ -65,6 +65,7 @@ variable "azure_common_subnet_names" {
   default = [
     "common"
   ]
+}
 
 variable "azure_vnet_common_address_spaces" {
   type = list(string)
