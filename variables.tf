@@ -71,7 +71,7 @@ variable "vm_username" {
 
 variable "vm_distribution" {
   type = string
-  default = "20_04-lts-gen2"
+  default = "18.04-LTS"
 }
 
 variable "vm_size" {
