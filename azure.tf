@@ -52,6 +52,20 @@ resource "azurerm_virtual_network_peering" "default_to_app" {
   remote_virtual_network_id = module.vnet_app.vnet_id
 }
 
+resource "azurerm_virtual_network_peering" "default_to_common" {
+  name = "default-to-common"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  virtual_network_name =  module.vnet_default.vnet_name
+  remote_virtual_network_id = module.vnet_common.vnet_id
+}
+
+resource "azurerm_virtual_network_peering" "common_to_default" {
+  name = "common-to-default"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  virtual_network_name =  module.vnet_common.vnet_name
+  remote_virtual_network_id = module.vnet_default.vnet_id
+}
+
 resource "azurerm_virtual_network_peering" "app_to_default" {
   name = "app-to-default"
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
