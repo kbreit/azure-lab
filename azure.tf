@@ -107,8 +107,8 @@ resource "azurerm_network_interface" "default_vnet_vm_intf" {
   ip_configuration {
     name = "internal"
     subnet_id = module.vnet_default.vnet_subnets[0].id
+    private_ip_address_allocation = "Dynamic"
   }
-  private_ip_address_allocation = "Dynamic"
 }
 
 resource "azurerm_linux_virtual_machine" "default_vnet_vm" {
