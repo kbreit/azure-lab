@@ -60,6 +60,6 @@ variable "azure_vnet_app_names" {
   default = "kbreit-app"
 }
 
-variable "vpn_key" {
+variable "VPN_SECRET" {
   type = string
 }
