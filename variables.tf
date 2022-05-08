@@ -114,7 +114,7 @@ variable "vm_password" {
 variable "nsg_default_sap" {
   type = list(string)
   default = [
-    "0.0.0.0/0"
+    "73.22.172.87/32"
   ]
 }
 

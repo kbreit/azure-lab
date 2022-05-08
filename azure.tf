@@ -225,4 +225,5 @@ module "default-nsg" {
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
   source_address_prefixes = var.nsg_default_sap
   destination_address_prefixes = var.nsg_default_dap
+  security_group_name = "default-nsg"
 }
