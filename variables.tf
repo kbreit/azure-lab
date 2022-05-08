@@ -118,7 +118,7 @@ variable "nsg_default_sap" {
   ]
 }
 
-variable "nsg_default_subnet1_dap" {
+variable "nsg_default_dap" {
   type = list(string)
   default = [
     "10.2.1.0/24"
