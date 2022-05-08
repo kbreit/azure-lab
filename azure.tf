@@ -212,7 +212,7 @@ resource "azurerm_bastion_host" "bastion" {
 
   ip_configuration {
     name = "configuration"
-    subnet_id = module.vnet_default.vnet_subnets[0]
+    subnet_id = module.vnet_default.vnet_subnets[2]
     public_ip_address_id = azurerm_public_ip.bastion_pup.id
   }
 }
