@@ -197,3 +197,22 @@ resource "azurerm_linux_virtual_machine" "app_vnet_vm" {
   }
 }
 
+resource "azurerm_public_ip" "bastion_pup" {
+  name = "kbreit-bastion-pup"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
+  allocation_method = "Static"
+  sku = "Standard"
+}
+
+resource "azurerm_bastion_host" "bastion" {
+  name = "kbreit-bastion"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
+
+  ip_configuration {
+    name = "configuration"
+    subnet_id = module.vnet_default.vnet_subnets[0]
+    public_ip_address_id = azurerm_public_ip.bastion_pup.id
+  }
+}
