@@ -218,3 +218,11 @@ resource "azurerm_bastion_host" "bastion" {
     public_ip_address_id = azurerm_public_ip.bastion_pup.id
   }
 }
+
+module "default-nsg" {
+  source = "Azure/network-security-group/azurerm"
+  version = "3.6.0"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  source_address_prefixes = var.nsg_default_sap
+  destination_address_prefixes = var.nsg_default_dap
+}

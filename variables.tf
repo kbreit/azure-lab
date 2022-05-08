@@ -110,3 +110,17 @@ variable "vm_size" {
 variable "vm_password" {
   type = string
 }
+
+variable "nsg_default_sap" {
+  type = list(string)
+  default = [
+    "0.0.0.0/0"
+  ]
+}
+
+variable "nsg_default_subnet1_dap" {
+  type = list(string)
+  default = [
+    "10.2.1.0/24"
+  ]
+}
