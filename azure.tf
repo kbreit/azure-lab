@@ -316,7 +316,7 @@ resource "azurerm_firewall" "hub_firewall" {
   name = "hub-firewall"
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
   location            = azurerm_resource_group.azurerm_resource_group.location
-  sku = "AZFW_VNet"
+  sku_name = "AZFW_VNet"
   sku_tier = "Standard"
   ip_configuration {
     name = "configuration"
