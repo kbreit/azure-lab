@@ -28,7 +28,7 @@ variable "azure_vnet_lz_subnets" {
 variable "azure_lz_subnet_names" {
   type = list(string)
   default = [
-    "subnet1",
+    "EdgeSubnet",
     "GatewaySubnet",
     "AzureBastionSubnet",
     "AzureFirewallSubnet",
