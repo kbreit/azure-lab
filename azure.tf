@@ -325,10 +325,6 @@ resource "azurerm_firewall" "hub_firewall" {
   }
 }
 
-output "azure_firewall" {
-  value = azurerm_firewall.hub_firewall
-}
-
 # resource "azurerm_route_table" "firewall_table" {
 #   name = "firewall-table"
 #   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
