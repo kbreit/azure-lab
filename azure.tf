@@ -37,6 +37,14 @@ module "vnet_app" {
   vnet_name = var.azure_vnet_app_names
   subnet_prefixes = var.azure_vnet_app_subnets
   subnet_names = var.azure_app_subnet_names
+
+  nsg_ids = {
+    web = module.default-nsg.network_security_group_id
+  }
+
+  tags = {
+    owner = "Kevin Breit"
+  }
 }
 
 module "vnet_common" {
@@ -47,6 +55,14 @@ module "vnet_common" {
   vnet_name = var.azure_vnet_common_names
   subnet_prefixes = var.azure_vnet_common_subnets
   subnet_names = var.azure_common_subnet_names
+
+  nsg_ids = {
+    common = module.default-nsg.network_security_group_id
+  }
+
+  tags = {
+    owner = "Kevin Breit"
+  }
 }
 
 resource "azurerm_virtual_network_peering" "default_to_app" {
