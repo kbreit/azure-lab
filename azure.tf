@@ -302,3 +302,25 @@ module "default-nsg" {
     }
   ]
 }
+
+resource "azurerm_public_ip" "firewall_pup" {
+  name = "kbreit-firewall-pup"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
+  allocation_method = "Static"
+  sku = "Standard"
+}
+
+
+resource "azurerm_firewall" "hub_firewall" {
+  name = "hub-firewall"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
+  sku = "AZFW_VNet"
+  sku_tier = "Standard"
+  ip_configuration {
+    name = "configuration"
+    subnet_id = module.vnet_default.vnet_subnets[3]
+    public_ip_address_id = azurerm_public_ip.firewall_pup.id
+  }
+}

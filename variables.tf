@@ -20,7 +20,8 @@ variable "azure_vnet_lz_subnets" {
   default = [
     "10.2.1.0/24",
     "10.2.2.0/24",
-    "10.2.3.0/24"
+    "10.2.3.0/24",
+    "10.2.4.0/24",
   ]
 }
 
@@ -29,7 +30,8 @@ variable "azure_lz_subnet_names" {
   default = [
     "subnet1",
     "GatewaySubnet",
-    "AzureBastionSubnet"
+    "AzureBastionSubnet",
+    "AzureFirewallSubnet",
   ]
 }
 
