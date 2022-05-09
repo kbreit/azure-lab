@@ -12,10 +12,10 @@ resource "azurerm_resource_group" "azurerm_resource_group" {
 }
 
 module "vnet_default" {
-  source = "Azure/network/azurerm"
-  version = "3.5.0"
+  source = "Azure/vnet/azurerm"
+  version = "2.6.0"
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
-  address_spaces = var.azure_vnet_lz_address_spaces
+  address_space = var.azure_vnet_lz_address_spaces
   vnet_name = var.azure_vnet_lz_names
   subnet_prefixes = var.azure_vnet_lz_subnets
   subnet_names = var.azure_lz_subnet_names
@@ -26,20 +26,20 @@ module "vnet_default" {
 }
 
 module "vnet_app" {
-  source = "Azure/network/azurerm"
-  version = "3.5.0"
+  source = "Azure/vnet/azurerm"
+  version = "2.6.0"
   resource_group_name =  azurerm_resource_group.azurerm_resource_group.name
-  address_spaces = var.azure_vnet_app_address_spaces
+  address_space = var.azure_vnet_app_address_spaces
   vnet_name = var.azure_vnet_app_names
   subnet_prefixes = var.azure_vnet_app_subnets
   subnet_names = var.azure_app_subnet_names
 }
 
 module "vnet_common" {
-  source = "Azure/network/azurerm"
-  version = "3.5.0"
+  source = "Azure/vnet/azurerm"
+  version = "2.6.0"
   resource_group_name =  azurerm_resource_group.azurerm_resource_group.name
-  address_spaces = var.azure_vnet_common_address_spaces
+  address_space = var.azure_vnet_common_address_spaces
   vnet_name = var.azure_vnet_common_names
   subnet_prefixes = var.azure_vnet_common_subnets
   subnet_names = var.azure_common_subnet_names
