@@ -237,7 +237,7 @@ module "default-nsg" {
       priority               = 201
       direction              = "Inbound"
       access                 = "Allow"
-      protocol               = "tcp"
+      protocol               = "Tcp"
       source_port_range      = "*"
       destination_port_range = "22"
       source_address_prefix  = "73.22.172.87/32"
