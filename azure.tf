@@ -217,6 +217,43 @@ resource "azurerm_linux_virtual_machine" "app_vnet_vm" {
   }
 }
 
+resource "azurerm_network_interface" "common_vnet_vm_intf" {
+  name = "common-vm-intf"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
+  ip_configuration {
+    name = "internal"
+    subnet_id = module.vnet_common.vnet_subnets[0]
+    private_ip_address_allocation = "Dynamic"
+  }
+}
+
+resource "azurerm_linux_virtual_machine" "common_vnet_vm" {
+  name = "kbreit-common-vnet-vm"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
+  size                = var.vm_size
+  admin_username      = var.vm_username
+  admin_password = var.vm_password
+  disable_password_authentication = false
+
+  network_interface_ids = [
+    azurerm_network_interface.common_vnet_vm_intf.id,
+  ]
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = var.vm_distribution
+    version   = "latest"
+  }
+}
+
 resource "azurerm_public_ip" "bastion_pup" {
   name = "kbreit-bastion-pup"
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
