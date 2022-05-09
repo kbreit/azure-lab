@@ -237,6 +237,4 @@ module "default-nsg" {
       priority = 150
     }
   ]
-  }
-
 }
