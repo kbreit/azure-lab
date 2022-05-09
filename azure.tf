@@ -20,6 +20,10 @@ module "vnet_default" {
   subnet_prefixes = var.azure_vnet_lz_subnets
   subnet_names = var.azure_lz_subnet_names
 
+  nsg_ids = {
+    subnet1 = module.default-nsg.network_security_group_id
+  }
+
   tags = {
     owner = "Kevin Breit"
   }
@@ -226,4 +230,16 @@ module "default-nsg" {
   source_address_prefixes = var.nsg_default_sap
   destination_address_prefixes = var.nsg_default_dap
   security_group_name = "default-nsg"
+
+  security_rule {
+    name = "ssh"
+    priority = 100
+    direction = "Inbound"
+    access = "Allow"
+    protocol = "Tcp"
+    source_port_range = "*"
+    destination_port_range = "22"
+    source_address_prefix = "*"
+    destination_address_prefix = "*"
+  }
 }
