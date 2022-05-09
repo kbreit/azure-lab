@@ -240,7 +240,7 @@ module "default-nsg" {
       protocol               = "tcp"
       source_port_range      = "*"
       destination_port_range = "22"
-      source_address_prefix  = var.nsg_default_sap
+      source_address_prefix  = "73.22.172.87/32"
       description            = "SSH from Kevin's House"
     }
   ]
