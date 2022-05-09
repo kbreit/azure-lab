@@ -231,15 +231,12 @@ module "default-nsg" {
   destination_address_prefixes = var.nsg_default_dap
   security_group_name = "default-nsg"
 
-  security_rule {
-    name = "ssh"
-    priority = 100
-    direction = "Inbound"
-    access = "Allow"
-    protocol = "Tcp"
-    source_port_range = "*"
-    destination_port_range = "22"
-    source_address_prefix = "*"
-    destination_address_prefix = "*"
+  predefined_rules = [
+    {
+      name = "SSH"
+      priority = 150
+    }
+  ]
   }
+
 }
