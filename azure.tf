@@ -354,12 +354,29 @@ resource "azurerm_firewall_network_rule_collection" "east_west_network_collectio
     name = "icmp"
     source_addresses = [
       "10.3.0.0/24",
+    ]
+
+    destination_addresses = [
+      "*",
+    ]
+
+    destination_ports = [
+      "*",
+    ]
+
+    protocols = [
+      "ICMP",
+    ]
+  }
+
+  rule { 
+    name = "icmp"
+    source_addresses = [
       "10.4.0.0/24",
     ]
 
     destination_addresses = [
-      "10.3.0.0/24",
-      "10.4.0.0/24",
+      "*",
     ]
 
     destination_ports = [
