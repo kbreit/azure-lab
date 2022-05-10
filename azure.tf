@@ -24,9 +24,9 @@ module "vnet_default" {
     subnet1 = module.default-nsg.network_security_group_id
   }
 
-  # route_tables_ids = {
-  #   subnet1 = azurerm_route_table.firewall_table.id
-  # }
+  route_tables_ids = {
+    subnet1 = azurerm_route_table.firewall_table.id
+  }
 
   tags = {
     owner = "Kevin Breit"
