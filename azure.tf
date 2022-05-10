@@ -42,6 +42,10 @@ module "vnet_app" {
   subnet_prefixes = var.azure_vnet_app_subnets
   subnet_names = var.azure_app_subnet_names
 
+  route_tables_ids = {
+    web = azurerm_route_table.app_table.id
+  }
+
   nsg_ids = {
     web = module.default-nsg.network_security_group_id
   }
@@ -359,15 +363,15 @@ resource "azurerm_route_table" "common-table" {
   }
 }
 
-# resource "azurerm_route_table" "app_table" {
-#   name = "app-table"
-#   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
-#   location            = azurerm_resource_group.azurerm_resource_group.location
+resource "azurerm_route_table" "app_table" {
+  name = "app-table"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
 
-#   route {
-#     name = "common-route"
-#     address_prefix = var.azure_vnet_common_address_spaces[0]
-#     next_hop_type = "VirtualAppliance"
-#     next_hop_in_ip_address = azurerm_firewall.hub_firewall.ip_configuration[0].private_ip_address
-#   }
-# }
+  route {
+    name = "common-route"
+    address_prefix = var.azure_vnet_common_address_spaces[0]
+    next_hop_type = "VirtualAppliance"
+    next_hop_in_ip_address = azurerm_firewall.hub_firewall.ip_configuration[0].private_ip_address
+  }
+}
