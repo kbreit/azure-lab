@@ -399,6 +399,25 @@ resource "azurerm_firewall_network_rule_collection" "east_west_network_collectio
       "ICMP",
     ]
   }
+
+  rule {
+    name = "outbound-allow"
+    source_addresses = [
+      "10.4.0.0/24",
+    ]
+
+    destination_addresses = [
+      "0.0.0.0/0"
+    ]
+
+    destination_ports = [
+      "*"
+    ]
+
+    protocols = [
+      "Any"
+    ]
+  }
 }
 
 resource "azurerm_route_table" "firewall_table" {
