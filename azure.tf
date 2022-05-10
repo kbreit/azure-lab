@@ -43,7 +43,7 @@ module "vnet_app" {
   subnet_names = var.azure_app_subnet_names
 
   route_tables_ids = {
-    common = azurerm_route_table.common.id
+    common = azurerm_route_table.common_table.id
   }
 
   nsg_ids = {
@@ -346,7 +346,7 @@ resource "azurerm_route_table" "firewall_table" {
   }
 }
 
-resource "azurerm_route_table" "common-table" {
+resource "azurerm_route_table" "common_table" {
   name = "common-table"
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
   location            = azurerm_resource_group.azurerm_resource_group.location
@@ -359,7 +359,7 @@ resource "azurerm_route_table" "common-table" {
   }
 }
 
-# resource "azurerm_route_table" "app-table" {
+# resource "azurerm_route_table" "app_table" {
 #   name = "app-table"
 #   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
 #   location            = azurerm_resource_group.azurerm_resource_group.location
