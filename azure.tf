@@ -363,7 +363,7 @@ resource "azurerm_firewall_network_rule_collection" "east_west_network_collectio
     ]
 
     destination_ports = [
-      "any",
+      "*",
     ]
 
     protocols = [
