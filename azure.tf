@@ -361,6 +361,11 @@ resource "azurerm_firewall_network_rule_collection" "east_west_network_collectio
       "10.3.0.0/24",
       "10.4.0.0/24",
     ]
+
+    destination_ports = [
+      "any",
+    ]
+
     protocols = [
       "ICMP",
     ]
