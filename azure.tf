@@ -346,7 +346,7 @@ resource "azurerm_route_table" "firewall_table" {
   }
 }
 
-resource "azurerm_route_table" "common_table" {
+resource "azurerm_route_table" "common-table" {
   name = "common-table"
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
   location            = azurerm_resource_group.azurerm_resource_group.location
