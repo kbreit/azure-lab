@@ -83,6 +83,7 @@ resource "azurerm_virtual_network_peering" "default_to_app" {
   virtual_network_name =  module.vnet_default.vnet_name
   remote_virtual_network_id = module.vnet_app.vnet_id
   allow_gateway_transit = true
+  allow_forwarded_traffic = true
 }
 
 resource "azurerm_virtual_network_peering" "default_to_common" {
@@ -91,6 +92,7 @@ resource "azurerm_virtual_network_peering" "default_to_common" {
   virtual_network_name =  module.vnet_default.vnet_name
   remote_virtual_network_id = module.vnet_common.vnet_id
   allow_gateway_transit = true
+  allow_forwarded_traffic =true
 }
 
 resource "azurerm_virtual_network_peering" "common_to_default" {
@@ -99,6 +101,7 @@ resource "azurerm_virtual_network_peering" "common_to_default" {
   virtual_network_name =  module.vnet_common.vnet_name
   remote_virtual_network_id = module.vnet_default.vnet_id
   use_remote_gateways = true
+  allow_forwarded_traffic = true
 }
 
 resource "azurerm_virtual_network_peering" "app_to_default" {
@@ -107,6 +110,7 @@ resource "azurerm_virtual_network_peering" "app_to_default" {
   virtual_network_name =  module.vnet_app.vnet_name
   remote_virtual_network_id = module.vnet_default.vnet_id
   use_remote_gateways = true
+  allow_forwarded_traffic = true
 }
 
 resource "azurerm_public_ip" "vpn_gateway_ip" {
