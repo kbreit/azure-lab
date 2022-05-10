@@ -351,7 +351,7 @@ resource "azurerm_firewall_network_rule_collection" "east_west_network_collectio
   action = "Allow"
 
   rule { 
-    name = "icmp"
+    name = "icmp-app"
     source_addresses = [
       "10.3.0.0/24",
     ]
@@ -370,7 +370,7 @@ resource "azurerm_firewall_network_rule_collection" "east_west_network_collectio
   }
 
   rule { 
-    name = "icmp"
+    name = "icmp-common"
     source_addresses = [
       "10.4.0.0/24",
     ]
