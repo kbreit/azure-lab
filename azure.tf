@@ -413,7 +413,7 @@ resource "azurerm_route_table" "common-table" {
 
   route {
     name = "app-route"
-    address_prefix = var.azure_vnet_app_address_spaces[0]
+    address_prefix = "0.0.0.0/0"
     next_hop_type = "VirtualAppliance"
     next_hop_in_ip_address = azurerm_firewall.hub_firewall.ip_configuration[0].private_ip_address
   }
@@ -426,7 +426,7 @@ resource "azurerm_route_table" "app_table" {
 
   route {
     name = "common-route"
-    address_prefix = var.azure_vnet_common_address_spaces[0]
+    address_prefix = "0.0.0.0/0"
     next_hop_type = "VirtualAppliance"
     next_hop_in_ip_address = azurerm_firewall.hub_firewall.ip_configuration[0].private_ip_address
   }
