@@ -345,3 +345,29 @@ resource "azurerm_route_table" "firewall_table" {
     next_hop_in_ip_address = azurerm_firewall.hub_firewall.ip_configuration[0].private_ip_address
   }
 }
+
+resource "azurerm_route_table" "common-table" {
+  name = "common-table"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
+
+  route {
+    name = "app-route"
+    address_prefix = var.azure_vnet_app_address_spaces[0]
+    next_hop_type = "VirtualAppliance"
+    next_hop_in_ip_address = azurerm_firewall.hub_firewall.ip_configuration[0].private_ip_address
+  }
+}
+
+resource "azurerm_route_table" "app-table" {
+  name = "app-table"
+  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
+  location            = azurerm_resource_group.azurerm_resource_group.location
+
+  route {
+    name = "common-route"
+    address_prefix = var.azure_vnet_common_address_spaces[0]
+    next_hop_type = "VirtualAppliance"
+    next_hop_in_ip_address = azurerm_firewall.hub_firewall.ip_configuration[0].private_ip_address
+  }
+}
