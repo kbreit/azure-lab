@@ -15,7 +15,7 @@ resource "azurerm_log_analytics_workspace" "logs_workspace" {
   name = "kbreit-logs"
   location = azurerm_resource_group.azurerm_resource_group.location
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
-  sku = "Free"
+  sku = "PerGB2018"
   retention_in_days = 30
 }
 
