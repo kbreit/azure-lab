@@ -42,6 +42,10 @@ module "vnet_app" {
   subnet_prefixes = var.azure_vnet_app_subnets
   subnet_names = var.azure_app_subnet_names
 
+  route_tables_ids = {
+    common = azurerm_route_table.common.id
+  }
+
   nsg_ids = {
     web = module.default-nsg.network_security_group_id
   }
