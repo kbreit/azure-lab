@@ -346,7 +346,6 @@ resource "azurerm_firewall_policy" "default_policy" {
 resource "azurerm_firewall_network_rule_collection" "east_west_network_collection" {
   name = "east-west-collection"
   resource_group_name = azurerm_resource_group.azurerm_resource_group.name
-  location            = azurerm_resource_group.azurerm_resource_group.location
   azure_firewall_name = azurerm_firewall.hub_firewall.name
   priority = 500
   action = "Allow"
