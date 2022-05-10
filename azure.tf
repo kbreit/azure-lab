@@ -61,7 +61,7 @@ module "vnet_common" {
   subnet_names = var.azure_common_subnet_names
 
   route_tables_ids = {
-    common = azurerm_route_table.common_table.id
+    common = azurerm_route_table.common-table.id
   }
 
   nsg_ids = {
