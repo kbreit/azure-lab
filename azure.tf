@@ -325,13 +325,24 @@ module "default-nsg" {
       description            = "SSH from Kevin's House"
     },
     {
-      name                   = "Outbound DNS"
+      name                   = "DNS"
       priority               = 300
       direction              = "Outbound"
       access                 = "Allow"
       protocol               = "Tcp"
       source_port_range      = "*"
       destination_port_range = "53"
+      source_address_prefix  = "*"
+      description            = "DNS lookup"
+    },
+    {
+      name                   = "ICMP"
+      priority               = 300
+      direction              = "Outbound"
+      access                 = "Allow"
+      protocol               = "Icmp"
+      source_port_range      = "*"
+      destination_port_range = "*"
       source_address_prefix  = "*"
       description            = "DNS lookup"
     },
