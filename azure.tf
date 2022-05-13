@@ -323,7 +323,18 @@ module "default-nsg" {
       destination_port_range = "22"
       source_address_prefix  = "73.22.172.87/32"
       description            = "SSH from Kevin's House"
-    }
+    },
+    {
+      name                   = "Outbound DNS"
+      priority               = 300
+      direction              = "Outbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      source_port_range      = "*"
+      destination_port_range = "53"
+      source_address_prefix  = "*"
+      description            = "DNS lookup"
+    },
   ]
 }
 
