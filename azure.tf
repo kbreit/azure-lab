@@ -365,8 +365,8 @@ resource "azurerm_firewall_network_rule_collection" "east_west_network_collectio
   rule {
     name = "allow-all"
     source_addresses = [
-      "10.3.0.0/24",
-      "10.4.0.0/24",
+      "10.3.0.0/16",
+      "10.4.0.0/16",
     ]
 
     destination_addresses = [
