@@ -370,7 +370,7 @@ resource "azurerm_firewall_network_rule_collection" "east_west_network_collectio
     ]
 
     destination_addresses = [
-      "0.0.0.0/0"
+      "*"
     ]
 
     destination_ports = [
