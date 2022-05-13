@@ -381,6 +381,25 @@ resource "azurerm_firewall_network_rule_collection" "east_west_network_collectio
       "Any"
     ]
   }
+
+  rule {
+    name = "1.1.1.1 ICMP"
+    source_addresses = [
+      "1.1.1.1/32",
+    ]
+
+    destination_addresses = [
+      "*"
+    ]
+
+    destination_ports = [
+      "*"
+    ]
+
+    protocols = [
+      "Any"
+    ]
+  }
 }
 
 resource "azurerm_route_table" "firewall_table" {
