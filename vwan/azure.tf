@@ -26,14 +26,6 @@ module "vnet_default" {
   subnet_prefixes = var.azure_vnet_lz_subnets
   subnet_names = var.azure_lz_subnet_names
 
-  nsg_ids = {
-    subnet1 = module.default-nsg.network_security_group_id
-  }
-
-  route_tables_ids = {
-    subnet1 = azurerm_route_table.firewall_table.id
-  }
-
   tags = {
     owner = "Kevin Breit"
   }
@@ -47,14 +39,6 @@ module "vnet_app" {
   vnet_name = var.azure_vnet_app_names
   subnet_prefixes = var.azure_vnet_app_subnets
   subnet_names = var.azure_app_subnet_names
-
-  route_tables_ids = {
-    web = azurerm_route_table.app_table.id
-  }
-
-  nsg_ids = {
-    web = module.default-nsg.network_security_group_id
-  }
 
   tags = {
     owner = "Kevin Breit"
