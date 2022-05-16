@@ -2,13 +2,12 @@ data "tfe_organization" "org" {
     name = var.tfe_org_name
 }
 
-data "tfe_workspace" "traditional_vnet" {
-    name = "azure-traditional-vnet"
+resource "tfe_oauth_client" "github_client" {
+    name = "github-oauth-token"
     organization = data.tfe_organization.org.name
-}
-
-output "workspace_name" {
-    value = data.tfe_workspace.traditional_vnet
+    api_url = "https://api.github.com"
+    http_url = "https://github.com"
+    oauth_token = var.github_oauth_token
 }
 
 resource "tfe_workspace" "vwan" {
