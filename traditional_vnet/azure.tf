@@ -424,13 +424,3 @@ resource "azurerm_route_table" "app_table" {
     next_hop_in_ip_address = azurerm_firewall.hub_firewall.ip_configuration[0].private_ip_address
   }
 }
-
-resource "azurerm_monitor_diagnostic_setting" "firewall_diagnostics" {
-  name = "kbreit-firewall-diagnostics"
-  target_resource_id = azurerm_firewall.hub_firewall.id
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.logs_workspace.id
-  log {
-    category = "AzureFirewallNetworkRule"
-    enabled = true
-  }
-}
