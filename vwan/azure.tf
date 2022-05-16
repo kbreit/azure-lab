@@ -20,7 +20,7 @@ resource "azurerm_virtual_wan" "vwan" {
 module "vnet_default" {
   source = "Azure/vnet/azurerm"
   version = "2.6.0"
-  resource_group_name = azurerm_resource_group.vwan.name
+  resource_group_name = azurerm_resource_group.kbreit-vwan-rg.name
   address_space = var.azure_vnet_lz_address_spaces
   vnet_name = var.azure_vnet_lz_names
   subnet_prefixes = var.azure_vnet_lz_subnets
@@ -42,7 +42,7 @@ module "vnet_default" {
 module "vnet_app" {
   source = "Azure/vnet/azurerm"
   version = "2.6.0"
-  resource_group_name =  azurerm_resource_group.vwan.name
+  resource_group_name =  azurerm_resource_group.kbreit-vwan-rg.name
   address_space = var.azure_vnet_app_address_spaces
   vnet_name = var.azure_vnet_app_names
   subnet_prefixes = var.azure_vnet_app_subnets
