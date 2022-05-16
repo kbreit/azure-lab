@@ -11,14 +11,6 @@ resource "azurerm_resource_group" "azurerm_resource_group" {
   }
 }
 
-resource "azurerm_log_analytics_workspace" "logs_workspace" {
-  name = "kbreit-logs"
-  location = azurerm_resource_group.azurerm_resource_group.location
-  resource_group_name = azurerm_resource_group.azurerm_resource_group.name
-  sku = "PerGB2018"
-  retention_in_days = 30
-}
-
 module "vnet_default" {
   source = "Azure/vnet/azurerm"
   version = "2.6.0"
