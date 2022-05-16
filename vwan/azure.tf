@@ -10,3 +10,9 @@ resource "azurerm_resource_group" "kbreit-vwan-rg" {
     owner = "Kevin Breit"
   }
 }
+
+resource "azurerm_virtual_wan" "vwan" {
+  name = "kbreit-vwan"
+  resource_group_name = azurerm_resource_group.kbreit-vwan-rg.name
+  location = azurerm_resource_group.kbreit-vwan-rg.location
+}
