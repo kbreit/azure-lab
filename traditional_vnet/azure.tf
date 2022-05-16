@@ -335,17 +335,6 @@ module "default-nsg" {
       source_address_prefix  = "*"
       description            = "DNS lookup"
     },
-    {
-      name                   = "ICMP"
-      priority               = 300
-      direction              = "Outbound"
-      access                 = "Allow"
-      protocol               = "Icmp"
-      source_port_range      = "*"
-      destination_port_range = "*"
-      source_address_prefix  = "*"
-      description            = "DNS lookup"
-    },
   ]
 }
 
@@ -389,25 +378,6 @@ resource "azurerm_firewall_network_rule_collection" "east_west_network_collectio
     source_addresses = [
       "10.3.0.0/16",
       "10.4.0.0/16",
-    ]
-
-    destination_addresses = [
-      "*"
-    ]
-
-    destination_ports = [
-      "*"
-    ]
-
-    protocols = [
-      "Any"
-    ]
-  }
-
-  rule {
-    name = "1.1.1.1 ICMP"
-    source_addresses = [
-      "1.1.1.1/32",
     ]
 
     destination_addresses = [
