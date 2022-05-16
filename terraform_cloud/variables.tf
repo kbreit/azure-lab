@@ -8,7 +8,7 @@ variable "tfe_workspace_vwan_name" {
     default = "azure-vwan"
 }
 
-variable "github_oauth_token" {
+variable "github_oauth_token_id" {
     type = string
     sensitive = true
 }
