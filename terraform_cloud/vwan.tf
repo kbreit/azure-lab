@@ -16,7 +16,7 @@ resource "tfe_workspace" "vwan" {
     organization = data.tfe_organization.org.name
     auto_apply = false
     working_directory = "vwan"
-    vc_repo {
+    vcs_repo {
         branch = ""
         identifier = "kbreit/azure-lab"
         ingress_submodules = false
