@@ -1,5 +1,3 @@
-provider "tfe" {}
-
 data "tfe_organization" "kbreit" {
     name = var.tfe_org_name
 }
