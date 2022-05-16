@@ -5,7 +5,7 @@ data "tfe_organization" "kbreit" {
 resource "tfe_workspace" "vwan" {
     name = var.tfe_workspace_vwan_name
     organization = data.tfe_organization.kbreit.name
-    auto_apply = false
+    auto_apply = true
     working_directory = "vwan"
     vcs_repo {
         branch = ""
