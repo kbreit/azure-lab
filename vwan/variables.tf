@@ -22,6 +22,7 @@ variable "azure_vnet_lz_subnets" {
     "10.2.2.0/24",
     "10.2.3.0/24",
     "10.2.4.0/24",
+    "10.2.5.0/24",
   ]
 }
 
@@ -32,6 +33,7 @@ variable "azure_lz_subnet_names" {
     "GatewaySubnet",
     "AzureBastionSubnet",
     "AzureFirewallSubnet",
+    "HubSubnet",
   ]
 }
 
@@ -63,3 +65,4 @@ variable "azure_vnet_app_names" {
   type = string
   default = "kbreit-app"
 }
+

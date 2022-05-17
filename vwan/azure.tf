@@ -17,6 +17,14 @@ resource "azurerm_virtual_wan" "vwan" {
   location = azurerm_resource_group.kbreit-vwan-rg.location
 }
 
+resource "azurerm_virtual_hub" "vwan_hub" {
+  name = "kbreit-vwan-hub"
+  resource_group_name = azurerm_resource_group.kbreit-vwan-rg.name
+  location = azurerm_resource_group.kbreit-vwan-rg.location
+  virtual_wan_id = azurerm_virtual_wan.vwan.id
+  address_prefix = var.azure_vnet_lz_subnets[4]
+}
+
 module "vnet_default" {
   source = "Azure/vnet/azurerm"
   version = "2.6.0"
@@ -44,3 +52,4 @@ module "vnet_app" {
     owner = "Kevin Breit"
   }
 }
+
