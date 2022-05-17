@@ -25,6 +25,12 @@ resource "azurerm_virtual_hub" "vwan_hub" {
   address_prefix = var.azure_vnet_lz_subnets[4]
 }
 
+resource "azurerm_virtual_hub_connection" "hub_app_connection" {
+  name = "hub-app-connection"
+  virtual_hub_id = azurerm_virtual_hub.vwan_hub.id
+  remote_remote_virtual_network_id = module.vnet_app.vnet_id
+}
+
 module "vnet_default" {
   source = "Azure/vnet/azurerm"
   version = "2.6.0"
