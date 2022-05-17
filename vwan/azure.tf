@@ -81,7 +81,7 @@ module "vnet_common" {
 
 resource "azurerm_network_interface" "app_vnet_vm_intf" {
   name = "app-vm-intf"
-  resource_group_name = azurerm_resource_group.kbreit-vwan-rg
+  resource_group_name = azurerm_resource_group.kbreit-vwan-rg.name
   location            = azurerm_resource_group.kbreit-vwan-rg.location
   ip_configuration {
     name = "internal"
@@ -92,7 +92,7 @@ resource "azurerm_network_interface" "app_vnet_vm_intf" {
 
 resource "azurerm_linux_virtual_machine" "app_vnet_vm" {
   name = "kbreit-app-vnet-vm"
-  resource_group_name = azurerm_resource_group.kbreit-vwan-rg
+  resource_group_name = azurerm_resource_group.kbreit-vwan-rg.name
   location            = azurerm_resource_group.kbreit-vwan-rg.location
   size                = var.vm_size
   admin_username      = var.vm_username
@@ -118,7 +118,7 @@ resource "azurerm_linux_virtual_machine" "app_vnet_vm" {
 
 resource "azurerm_network_interface" "common_vnet_vm_intf" {
   name = "common-vm-intf"
-  resource_group_name = azurerm_resource_group.kbreit-vwan-rg
+  resource_group_name = azurerm_resource_group.kbreit-vwan-rg.name
   location            = azurerm_resource_group.kbreit-vwan-rg.location
   ip_configuration {
     name = "internal"
@@ -129,7 +129,7 @@ resource "azurerm_network_interface" "common_vnet_vm_intf" {
 
 resource "azurerm_linux_virtual_machine" "common_vnet_vm" {
   name = "kbreit-common-vnet-vm"
-  resource_group_name = azurerm_resource_group.kbreit-vwan-rg
+  resource_group_name = azurerm_resource_group.kbreit-vwan-rg.name
   location            = azurerm_resource_group.kbreit-vwan-rg.location
   size                = var.vm_size
   admin_username      = var.vm_username
@@ -155,7 +155,7 @@ resource "azurerm_linux_virtual_machine" "common_vnet_vm" {
 
 resource "azurerm_public_ip" "bastion_pup" {
   name = "kbreit-bastion-pup"
-  resource_group_name = azurerm_resource_group.kbreit-vwan-rg
+  resource_group_name = azurerm_resource_group.kbreit-vwan-rg.name
   location            = azurerm_resource_group.kbreit-vwan-rg.location
   allocation_method = "Static"
   sku = "Standard"
@@ -163,7 +163,7 @@ resource "azurerm_public_ip" "bastion_pup" {
 
 resource "azurerm_bastion_host" "bastion" {
   name = "kbreit-bastion"
-  resource_group_name = azurerm_resource_group.kbreit-vwan-rg
+  resource_group_name = azurerm_resource_group.kbreit-vwan-rg.name
   location            = azurerm_resource_group.kbreit-vwan-rg.location
   tunneling_enabled = true
   sku = "Standard"
