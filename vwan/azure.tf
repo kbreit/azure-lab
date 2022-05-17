@@ -31,6 +31,12 @@ resource "azurerm_virtual_hub_connection" "hub_app_connection" {
   remote_virtual_network_id = module.vnet_app.vnet_id
 }
 
+resource "azurerm_virtual_hub_connection" "hub_common_connection" {
+  name = "hub-common-connection"
+  virtual_hub_id = azurerm_virtual_hub.vwan_hub.id
+  remote_virtual_network_id = module.vnet_common.vnet_id
+}
+
 module "vnet_default" {
   source = "Azure/vnet/azurerm"
   version = "2.6.0"
@@ -59,3 +65,16 @@ module "vnet_app" {
   }
 }
 
+module "vnet_common" {
+  source = "Azure/vnet/azurerm"
+  version = "2.6.0"
+  resource_group_name =  azurerm_resource_group.azurerm_resource_group.name
+  address_space = var.azure_vnet_common_address_spaces
+  vnet_name = var.azure_vnet_common_names
+  subnet_prefixes = var.azure_vnet_common_subnets
+  subnet_names = var.azure_common_subnet_names
+
+  tags = {
+    owner = "Kevin Breit"
+  }
+}
