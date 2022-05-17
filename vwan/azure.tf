@@ -68,7 +68,7 @@ module "vnet_app" {
 module "vnet_common" {
   source = "Azure/vnet/azurerm"
   version = "2.6.0"
-  resource_group_name =  azurerm_resource_group.azurerm_resource_group.name
+  resource_group_name =  azurerm_resource_group.kbreit-vwan-rg.name
   address_space = var.azure_vnet_common_address_spaces
   vnet_name = var.azure_vnet_common_names
   subnet_prefixes = var.azure_vnet_common_subnets
