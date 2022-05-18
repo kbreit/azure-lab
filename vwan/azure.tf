@@ -174,3 +174,37 @@ resource "azurerm_bastion_host" "bastion" {
     public_ip_address_id = azurerm_public_ip.bastion_pup.id
   }
 }
+
+module "default-nsg" {
+  source = "Azure/network-security-group/azurerm"
+  version = "3.6.0"
+  resource_group_name = azurerm_resource_group.kbreit-vwan-rg.name
+  source_address_prefixes = var.nsg_default_sap
+  destination_address_prefixes = var.nsg_default_dap
+  security_group_name = "default-nsg"
+
+  custom_rules = [
+    {
+      name                   = "home-ssh"
+      priority               = 201
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      source_port_range      = "*"
+      destination_port_range = "22"
+      source_address_prefix  = "73.22.172.87/32"
+      description            = "SSH from Kevin's House"
+    },
+    {
+      name                   = "DNS"
+      priority               = 300
+      direction              = "Outbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      source_port_range      = "*"
+      destination_port_range = "53"
+      source_address_prefix  = "*"
+      description            = "DNS lookup"
+    },
+  ]
+}
