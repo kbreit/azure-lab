@@ -12,3 +12,8 @@ variable "github_oauth_token_id" {
     type = string
     sensitive = true
 }
+
+variable "tfe_workspace_vault_name" {
+    type = string
+    default = "hcp-vault"
+}
