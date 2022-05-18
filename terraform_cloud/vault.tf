@@ -1,7 +1,3 @@
-data "tfe_organization" "kbreit" {
-    name = var.tfe_org_name
-}
-
 resource "tfe_workspace" "vault" {
     name = var.tfe_workspace_vault_name
     organization = data.tfe_organization.kbreit.name
