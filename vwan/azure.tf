@@ -46,6 +46,10 @@ module "vnet_default" {
   subnet_prefixes = var.azure_vnet_lz_subnets
   subnet_names = var.azure_lz_subnet_names
 
+  nsg_ids = {
+    subnet1 = module.default-nsg.network_security_group_id
+  }
+
   tags = {
     owner = "Kevin Breit"
   }
@@ -60,6 +64,10 @@ module "vnet_app" {
   subnet_prefixes = var.azure_vnet_app_subnets
   subnet_names = var.azure_app_subnet_names
 
+  nsg_ids = {
+    web = module.default-nsg.network_security_group_id
+  }
+
   tags = {
     owner = "Kevin Breit"
   }
@@ -73,6 +81,10 @@ module "vnet_common" {
   vnet_name = var.azure_vnet_common_names
   subnet_prefixes = var.azure_vnet_common_subnets
   subnet_names = var.azure_common_subnet_names
+
+  nsg_ids = {
+    common = module.default-nsg.network_security_group_id
+  }
 
   tags = {
     owner = "Kevin Breit"
