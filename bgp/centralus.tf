@@ -14,7 +14,7 @@ module "vnet_central" {
   address_space = ["10.3.0.0/16"]
   vnet_name = "vnet-central"
   subnet_prefixes = ["10.3.1.0/24"]
-  subnet_names = "GatewaySubnet"
+  subnet_names = ["GatewaySubnet"]
 
   tags = {
     owner = "Kevin Breit"
