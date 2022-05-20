@@ -8,7 +8,7 @@ variable "tfe_workspace_vwan_name" {
     default = "azure-vwan"
 }
 
-variable "tfe_workspace_vwan_name" {
+variable "tfe_workspace_bgp_name" {
     type = string
     default = "azure-vpn-bgp"
 }
