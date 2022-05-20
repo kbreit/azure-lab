@@ -45,7 +45,7 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway_east" {
     name = "vpnGatewayConfig"
     public_ip_address_id = azurerm_public_ip.vpn_gateway_ip_east.id
     private_ip_address_allocation = "Dynamic"
-    subnet_id = module.vnet_default.vnet_subnets[0]
+    subnet_id = module.vnet_east.vnet_subnets[0]
   }
 
   bgp_settings {

@@ -45,6 +45,6 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway_central" {
     name = "vpnGatewayConfig"
     public_ip_address_id = azurerm_public_ip.vpn_gateway_ip_central.id
     private_ip_address_allocation = "Dynamic"
-    subnet_id = module.vnet_default.vnet_subnets[0]
+    subnet_id = module.vnet_central.vnet_subnets[0]
   }
 }
