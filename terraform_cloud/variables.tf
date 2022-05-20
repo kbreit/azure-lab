@@ -8,6 +8,11 @@ variable "tfe_workspace_vwan_name" {
     default = "azure-vwan"
 }
 
+variable "tfe_workspace_vwan_name" {
+    type = string
+    default = "azure-vpn-bgp"
+}
+
 variable "github_oauth_token_id" {
     type = string
     sensitive = true

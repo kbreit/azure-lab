@@ -31,12 +31,6 @@ resource "azurerm_virtual_hub_connection" "hub_app_connection" {
   remote_virtual_network_id = module.vnet_app.vnet_id
 }
 
-resource "azurerm_virtual_hub_connection" "hub_default_connection" {
-  name = "hub-default-connection"
-  virtual_hub_id = azurerm_virtual_hub.vwan_hub.id
-  remote_virtual_network_id = module.vnet_default.vnet_id
-}
-
 resource "azurerm_virtual_hub_connection" "hub_common_connection" {
   name = "hub-common-connection"
   virtual_hub_id = azurerm_virtual_hub.vwan_hub.id
