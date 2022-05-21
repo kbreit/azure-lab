@@ -77,7 +77,7 @@ resource "azurerm_virtual_network_gateway_connection" "connection_east_to_centra
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_east.name
   type = "Vnet2Vnet"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.vpn_gateway_east.id
-  peer_virtual_network_gateway_id = azurerm_local_network_gateway.gateway_central.id
+  peer_virtual_network_gateway_id = azurerm_virtual_network_gateway.vpn_gateway_central.id
   enable_bgp = true  
 
   shared_key = var.vpn_shared_key
