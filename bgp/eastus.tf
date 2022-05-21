@@ -44,6 +44,7 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway_east" {
   active_active = false
   enable_bgp = true
   sku = "VpnGw2"
+  generation = "Generation2"
 
   ip_configuration {
     name = "vpnGatewayConfig"
