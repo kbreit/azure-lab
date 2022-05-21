@@ -19,6 +19,10 @@ module "vnet_east" {
   tags = {
     owner = "Kevin Breit"
   }
+
+  depends_on = [
+    azurerm_resource_group.kbreit_vpn_bgp_east
+  ]
 }
 
 resource "azurerm_public_ip" "vpn_gateway_ip_east" {
