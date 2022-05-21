@@ -51,6 +51,10 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway_central" {
     private_ip_address_allocation = "Dynamic"
     subnet_id = module.vnet_central.vnet_subnets[0]
   }
+
+  bgp_settings {
+      asn = 65535
+  }
 }
 
 resource "azurerm_local_network_gateway" "gateway_east" {
