@@ -57,10 +57,6 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway_central" {
   }
 }
 
-output "vngw" {
-  value = azurerm_virtual_network_gateway.vpn_gateway_central
-}
-
 resource "azurerm_local_network_gateway" "gateway_east" {
   name = "gateway-east"
   location = azurerm_resource_group.kbreit_vpn_bgp_central.location
