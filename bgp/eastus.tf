@@ -38,7 +38,7 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway_east" {
   location = azurerm_resource_group.kbreit_vpn_bgp_east.location
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_east.name
 
-  type = "Vnet2Vnet"
+  type = "Vpn"
   vpn_type = "RouteBased"
 
   active_active = false
@@ -75,7 +75,7 @@ resource "azurerm_virtual_network_gateway_connection" "connection_east_to_centra
   name = "connection-to-central"
   location = azurerm_resource_group.kbreit_vpn_bgp_east.location
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_east.name
-  type = "IPsec"
+  type = "Vnet2Vnet"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.vpn_gateway_east.id
   local_network_gateway_id = azurerm_local_network_gateway.gateway_central.id
   enable_bgp = true  
