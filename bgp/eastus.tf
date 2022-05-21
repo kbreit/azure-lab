@@ -65,7 +65,7 @@ resource "azurerm_local_network_gateway" "gateway_central" {
   address_space = ["10.1.1.0/24"]  
 }
 
-resource "azurerm_virtual_network_gateway" "connection_east_to_central" {
+resource "azurerm_virtual_network_gateway_connection" "connection_east_to_central" {
   name = "connection-to-central"
   location = azurerm_resource_group.kbreit_vpn_bgp_east.location
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_east.name
