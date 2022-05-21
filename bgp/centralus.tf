@@ -53,7 +53,7 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway_central" {
   }
 
   bgp_settings {
-      asn = 65534
+      asn = 65533
   }
 }
 
@@ -67,6 +67,11 @@ resource "azurerm_local_network_gateway" "gateway_east" {
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
   gateway_address = azurerm_public_ip.vpn_gateway_ip_east.ip_address
   address_space = ["10.1.2.0/24"]
+
+  bgp_settings {
+    asn = 65535
+    bgp_peering_address = azurerm_virtual_network_gateway.vpn_gateway_central.bgp_settings[0].bgp_peering_address[0].default_addresses[0]
+  }
 }
 
 resource "azurerm_virtual_network_gateway_connection" "connection_central_to_east" {
