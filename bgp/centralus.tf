@@ -66,8 +66,8 @@ resource "azurerm_virtual_network_gateway_connection" "connection_central_to_eas
   location = azurerm_resource_group.kbreit_vpn_bgp_central.location
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
   type = "IPsec"
-  virtual_network_gateway_id = azurerm_virtual_network_gateway.kbreit_vpn_bgp_central.id
-  local_network_gateway_id = azurerm_local_network_gateway.gateawy_east.id
+  virtual_network_gateway_id = azurerm_virtual_network_gateway.vpn_gateway_central.id
+  local_network_gateway_id = azurerm_local_network_gateway.gateway_east.id
 
   shared_key = var.vpn_shared_key
 }
