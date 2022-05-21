@@ -65,7 +65,7 @@ resource "azurerm_local_network_gateway" "gateway_east" {
   address_space = ["10.1.2.0/24"]
 
   bgp_settings {
-    asn = 65533
+    asn = 65534
     bgp_peering_address = azurerm_virtual_network_gateway.vpn_gateway_central.bgp_settings[0].peering_addresses[0].default_addresses[0]
   }
 }
