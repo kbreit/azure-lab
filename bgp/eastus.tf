@@ -11,9 +11,9 @@ module "vnet_east" {
   source = "Azure/vnet/azurerm"
   version = "2.6.0"
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_east.name
-  address_space = ["10.3.0.0/16"]
+  address_space = ["10.4.0.0/16"]
   vnet_name = "vnet-east"
-  subnet_prefixes = ["10.3.1.0/24"]
+  subnet_prefixes = ["10.4.1.0/24"]
   subnet_names = ["GatewaySubnet"]
 
   tags = {
