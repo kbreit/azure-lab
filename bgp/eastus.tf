@@ -77,6 +77,7 @@ resource "azurerm_virtual_network_gateway_connection" "connection_east_to_centra
   type = "IPsec"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.vpn_gateway_east.id
   local_network_gateway_id = azurerm_local_network_gateway.gateway_central.id
+  enable_bgp = true  
 
   shared_key = var.vpn_shared_key
 }
