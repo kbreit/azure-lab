@@ -53,7 +53,7 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway_central" {
   }
 
   bgp_settings {
-      asn = 65535
+      asn = 65534
   }
 }
 
