@@ -56,3 +56,22 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway_east" {
       asn = 65534
   }
 }
+
+resource "azurerm_local_network_gateway" "gateway_central" {
+  name = "gateway-central"
+  location = azurerm_resource_group.kbreit_vpn_bgp_east.location
+  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_east.name
+  gateway_address = azurerm_public_ip.vpn_gateway_ip_central.ip_address
+  address_space = ["10.1.1.0/24"]  
+}
+
+resource "azurerm_virtual_network_gateway" "connection_east_to_central" {
+  name = "connection-to-central"
+  location = azurerm_resource_group.kbreit_vpn_bgp_east.location
+  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_east.name
+  type = "IPsec"
+  virtual_network_gateway_id = azurerm_virtual_network_gateway.kbreit_vpn_bgp_east.id
+  local_network_gateway_id = azurerm_local_network_gateway.gateawy_central.id
+
+  shared_key = var.vpn_shared_key
+}
