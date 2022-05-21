@@ -70,7 +70,7 @@ resource "azurerm_local_network_gateway" "gateway_east" {
 
   bgp_settings {
     asn = 65535
-    bgp_peering_address = azurerm_virtual_network_gateway.vpn_gateway_central.bgp_settings[0].bgp_peering_address[0].default_addresses[0]
+    bgp_peering_address = azurerm_virtual_network_gateway.vpn_gateway_central.bgp_settings[0].bgp_peering_addresses[0].default_addresses[0]
   }
 }
 
