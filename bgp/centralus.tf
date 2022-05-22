@@ -141,7 +141,7 @@ resource "azurerm_network_interface" "central_vnet_vm_intf" {
   location            = azurerm_resource_group.kbreit_vpn_bgp_central.location
   ip_configuration {
     name = "internal"
-    subnet_id = module.vncet_central.vnet_subnets[0]
+    subnet_id = module.vnet_central.vnet_subnets[0]
     private_ip_address_allocation = "Dynamic"
   }
 }
