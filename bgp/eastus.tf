@@ -13,8 +13,8 @@ module "vnet_east" {
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_east.name
   address_space = ["10.4.0.0/16"]
   vnet_name = "vnet-east"
-  subnet_prefixes = ["10.4.1.0/24"]
-  subnet_names = ["GatewaySubnet"]
+  subnet_prefixes = ["10.4.1.0/24", "10.4.2.0/24"]
+  subnet_names = ["GatewaySubnet", "VMSubnet"]
 
   tags = {
     owner = "Kevin Breit"
@@ -68,4 +68,41 @@ resource "azurerm_virtual_network_gateway_connection" "connection_east_to_centra
   enable_bgp = true  
 
   shared_key = var.vpn_shared_key
+}
+
+resource "azurerm_linux_virtual_machine" "east_vnet_vm" {
+  name = "kbreit-east-vnet-vm"
+  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_east.name
+  location            = azurerm_resource_group.kbreit_vpn_bgp_east.location
+  size                = var.vm_size
+  admin_username      = var.vm_username
+  admin_password = var.vm_password
+  disable_password_authentication = false
+
+  network_interface_ids = [
+    azurerm_network_interface.east_vnet_vm_intf.id,
+  ]
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = var.vm_distribution
+    version   = "latest"
+  }
+}
+
+resource "azurerm_network_interface" "east_vnet_vm_intf" {
+  name = "east-vm-intf"
+  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_east.name
+  location            = azurerm_resource_group.kbreit_vpn_bgp_east.location
+  ip_configuration {
+    name = "internal"
+    subnet_id = module.vnet_east.vnet_subnets[1]
+    private_ip_address_allocation = "Dynamic"
+  }
 }
