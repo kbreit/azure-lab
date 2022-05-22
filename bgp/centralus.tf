@@ -138,7 +138,7 @@ resource "azurerm_linux_virtual_machine" "central_vnet_vm" {
 resource "azurerm_network_interface" "central_vnet_vm_intf" {
   name = "central-vm-intf"
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
-  location            = kbreit_vpn_bgp_central.azurerm_resource_group.location
+  location            = azurerm_resource_group.kbreit_vpn_bgp_central.location
   ip_configuration {
     name = "internal"
     subnet_id = module.vncet_central.vnet_subnets[0]
