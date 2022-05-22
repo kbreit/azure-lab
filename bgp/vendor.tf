@@ -16,16 +16,16 @@ module "vnet_vendor" {
   ]
 }
 
-resource "azurerm_virtual_network_peering" "vendor_to_central" {
-  name = "vendor-to-central"
-  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
-  virtual_network_name = module.vnet_vendor.vnet_name
-  remote_virtual_network_id = module.vnet_central.vnet_id
+# resource "azurerm_virtual_network_peering" "vendor_to_central" {
+#   name = "vendor-to-central"
+#   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
+#   virtual_network_name = module.vnet_vendor.vnet_name
+#   remote_virtual_network_id = module.vnet_central.vnet_id
 
-  allow_gateway_transit = true
-  allow_forwarded_traffic = true
-  allow_virtual_network_access = true
-}
+#   allow_gateway_transit = true
+#   allow_forwarded_traffic = true
+#   allow_virtual_network_access = true
+# }
 
 resource "azurerm_public_ip" "vpn_gateway_ip_vendor" {
   name = "vpn-gateway-ip-vendor"
