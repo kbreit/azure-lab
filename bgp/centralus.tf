@@ -70,24 +70,6 @@ resource "azurerm_virtual_network_gateway_connection" "connection_central_to_eas
   shared_key = var.vpn_shared_key
 }
 
-module "vnet_vendor" {
-  source = "Azure/vnet/azurerm"
-  version = "2.6.0"
-  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
-  address_space = ["10.5.0.0/16"]
-  vnet_name = "vnet-vendor"
-  subnet_prefixes = ["10.5.1.0/24"]
-  subnet_names = ["AppSubnet"]
-
-  tags = {
-    owner = "Kevin Breit"
-  }
-
-  depends_on = [
-    azurerm_resource_group.kbreit_vpn_bgp_central
-  ]
-}
-
 resource "azurerm_virtual_network_peering" "central_to_vendor" {
   name = "central-to-vendor"
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
