@@ -111,7 +111,7 @@ resource "azurerm_virtual_network_peering" "vendor_to_central" {
 
 resource "azurerm_linux_virtual_machine" "central_vnet_vm" {
   name = "kbreit-central-vnet-vm"
-  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central
+  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
   location            = azurerm_resource_group.kbreit_vpn_bgp_central.location
   size                = var.vm_size
   admin_username      = var.vm_username
