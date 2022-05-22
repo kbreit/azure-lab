@@ -13,8 +13,8 @@ module "vnet_central" {
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
   address_space = ["10.3.0.0/16"]
   vnet_name = "vnet-central"
-  subnet_prefixes = ["10.3.1.0/24"]
-  subnet_names = ["GatewaySubnet"]
+  subnet_prefixes = ["10.3.1.0/24", "10.3.2.0/24"]
+  subnet_names = ["GatewaySubnet", "VMSubnet"]
 
   tags = {
     owner = "Kevin Breit"
@@ -141,7 +141,7 @@ resource "azurerm_network_interface" "central_vnet_vm_intf" {
   location            = azurerm_resource_group.kbreit_vpn_bgp_central.location
   ip_configuration {
     name = "internal"
-    subnet_id = module.vnet_central.vnet_subnets[0]
+    subnet_id = module.vnet_central.vnet_subnets[1]
     private_ip_address_allocation = "Dynamic"
   }
 }
