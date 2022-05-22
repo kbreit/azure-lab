@@ -98,17 +98,6 @@ resource "azurerm_virtual_network_peering" "central_to_vendor" {
   allow_virtual_network_access = true
 }
 
-resource "azurerm_virtual_network_peering" "vendor_to_central" {
-  name = "central-to-vendor"
-  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
-  virtual_network_name = module.vnet_vendor.vnet_name
-  remote_virtual_network_id = module.vnet_central.vnet_id
-
-  allow_gateway_transit = true
-  allow_forwarded_traffic = true
-  allow_virtual_network_access = true
-}
-
 resource "azurerm_linux_virtual_machine" "central_vnet_vm" {
   name = "kbreit-central-vnet-vm"
   resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
