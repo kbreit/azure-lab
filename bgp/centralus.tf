@@ -108,3 +108,40 @@ resource "azurerm_virtual_network_peering" "vendor_to_central" {
   allow_forwarded_traffic = true
   allow_virtual_network_access = true
 }
+
+resource "azurerm_linux_virtual_machine" "central_vnet_vm" {
+  name = "kbreit-central-vnet-vm"
+  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central
+  location            = azurerm_resource_group.kbreit_vpn_bgp_central.location
+  size                = var.vm_size
+  admin_username      = var.vm_username
+  admin_password = var.vm_password
+  disable_password_authentication = false
+
+  network_interface_ids = [
+    azurerm_network_interface.central_vnet_vm_intf.id,
+  ]
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = var.vm_distribution
+    version   = "latest"
+  }
+}
+
+resource "azurerm_network_interface" "central_vnet_vm_intf" {
+  name = "central-vm-intf"
+  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
+  location            = kbreit_vpn_bgp_central.azurerm_resource_group.location
+  ip_configuration {
+    name = "internal"
+    subnet_id = module.vncet_central.vnet_subnets[0]
+    private_ip_address_allocation = "Dynamic"
+  }
+}
