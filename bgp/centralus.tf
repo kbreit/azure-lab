@@ -58,19 +58,6 @@ resource "azurerm_virtual_network_gateway" "vpn_gateway_central" {
   }
 }
 
-resource "azurerm_local_network_gateway" "gateway_east" {
-  name = "gateway-east"
-  location = azurerm_resource_group.kbreit_vpn_bgp_central.location
-  resource_group_name = azurerm_resource_group.kbreit_vpn_bgp_central.name
-  gateway_address = azurerm_public_ip.vpn_gateway_ip_east.ip_address
-  address_space = ["10.1.2.0/24"]
-
-  bgp_settings {
-    asn = 65534
-    bgp_peering_address = azurerm_virtual_network_gateway.vpn_gateway_central.bgp_settings[0].peering_addresses[0].default_addresses[0]
-  }
-}
-
 resource "azurerm_virtual_network_gateway_connection" "connection_central_to_east" {
   name = "connection-to-east"
   location = azurerm_resource_group.kbreit_vpn_bgp_central.location
